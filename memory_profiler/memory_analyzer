@@ -1,0 +1,1137 @@
+Diretorio: S-SEBI__empilhada.tif/ Já existe.
+Recriando arquivos, se existir.
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    78     38.8 MiB      0.0 MiB   	@profile
+    79                             	def setLinhas(self, rows):
+    80     38.8 MiB      0.0 MiB   		self.rows = rows
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    82     38.8 MiB      0.0 MiB   	@profile
+    83                             	def setColunas(self, cols):
+    84     38.8 MiB      0.0 MiB   		self.cols = cols
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    10     38.5 MiB      0.0 MiB   	@profile
+    11                             	def tif(self):
+    12     38.8 MiB      0.3 MiB   		self.entrada = gdal.Open(self.nomeArquivoEntrada,GA_ReadOnly)
+    13     38.8 MiB      0.0 MiB   		self.setLinhas(self.entrada.RasterYSize)
+    14     38.8 MiB      0.0 MiB   		self.setColunas(self.entrada.RasterXSize)
+
+
+linhas:Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    86     38.8 MiB      0.0 MiB   	@profile
+    87                             	def getLinhas(self):
+    88     38.8 MiB      0.0 MiB   		return self.rows
+
+
+7001  colunas:Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    90     38.8 MiB      0.0 MiB   	@profile
+    91                             	def getColunas(self):
+    92     38.8 MiB      0.0 MiB   		return self.cols
+
+
+8001 bandas:Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    98     38.8 MiB      0.0 MiB   	@profile
+    99                             	def getBandas(self):
+   100     38.8 MiB      0.0 MiB   		return self.NBandas
+
+
+7 driver:Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    94     38.8 MiB      0.0 MiB   	@profile
+    95                             	def getDriverEntrada(self):
+    96     38.8 MiB      0.0 MiB   		return self.entrada.GetDriver()
+
+
+GTiff
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    51     38.4 MiB      0.0 MiB   	@profile		
+    52                             	def __init__(self,nomeArquivoEntrada, algNome):
+    53     38.4 MiB      0.0 MiB   		self.nomeArquivoEntrada = nomeArquivoEntrada
+    54     38.4 MiB      0.0 MiB   		self.pastaSaida = algNome+'__'+nomeArquivoEntrada+'/'
+    55                             		
+    56     38.4 MiB      0.0 MiB   		try:
+    57     38.4 MiB      0.0 MiB   			os.mkdir(self.pastaSaida)
+    58     38.4 MiB      0.0 MiB   		except:
+    59     38.4 MiB      0.0 MiB   			print 'Diretorio: ' + self.pastaSaida + ' Já existe.'
+    60     38.4 MiB      0.0 MiB   			print 'Recriando arquivos, se existir.'
+    61     38.4 MiB      0.0 MiB   		self.NBandas = 7
+    62     38.4 MiB      0.0 MiB   		self.driver = gdal.GetDriverByName('GTiff')
+    63     38.5 MiB      0.1 MiB   		self.driver.Register()
+    64     38.5 MiB      0.0 MiB   		self.extensao = '.tif'
+    65                             		
+    66     38.8 MiB      0.3 MiB   		exec('self.'+nomeArquivoEntrada[-3:]+'()')
+    67                             		
+    68     38.8 MiB      0.0 MiB   		if  self.entrada is None:
+    69                             			print 'Erro ao abrir o arquivo: ' + nomeArquivoEntrada
+    70                             			sys.exit(1)
+    71                             		
+    72     38.8 MiB      0.0 MiB   		print 'linhas:',self.getLinhas(),' colunas:',self.getColunas(),'bandas:',self.getBandas(),'driver:',self.getDriverEntrada().ShortName
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    86     38.8 MiB      0.0 MiB   	@profile
+    87                             	def getLinhas(self):
+    88     38.8 MiB      0.0 MiB   		return self.rows
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    90     38.8 MiB      0.0 MiB   	@profile
+    91                             	def getColunas(self):
+    92     38.8 MiB      0.0 MiB   		return self.cols
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   102     39.0 MiB      0.0 MiB   	@profile
+   103                             	def getProjecao(self):	
+   104     39.1 MiB      0.1 MiB   		return self.entrada.GetProjection()
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   106     38.8 MiB      0.0 MiB   	@profile
+   107                             	def criaImagem(self,nome, linhas, colunas):
+   108     39.0 MiB      0.2 MiB   		saida = self.driver.Create(self.pastaSaida+nome+self.extensao,colunas, linhas,1,GDT_Float32)
+   109     39.0 MiB      0.0 MiB   		if saida is None:
+   110                             			print 'Erro ao criar o arquivo: ' + nome+self.extensao
+   111                             			sys.exit(1)
+   112     39.1 MiB      0.1 MiB   		saida.SetProjection(self.getProjecao())
+   113     39.1 MiB      0.0 MiB   		return saida, saida.GetRasterBand(1)
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   102     39.2 MiB      0.0 MiB   	@profile
+   103                             	def getProjecao(self):	
+   104     39.2 MiB      0.0 MiB   		return self.entrada.GetProjection()
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   106     39.1 MiB      0.0 MiB   	@profile
+   107                             	def criaImagem(self,nome, linhas, colunas):
+   108     39.2 MiB      0.0 MiB   		saida = self.driver.Create(self.pastaSaida+nome+self.extensao,colunas, linhas,1,GDT_Float32)
+   109     39.2 MiB      0.0 MiB   		if saida is None:
+   110                             			print 'Erro ao criar o arquivo: ' + nome+self.extensao
+   111                             			sys.exit(1)
+   112     39.2 MiB      0.0 MiB   		saida.SetProjection(self.getProjecao())
+   113     39.2 MiB      0.0 MiB   		return saida, saida.GetRasterBand(1)
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   102     39.2 MiB      0.0 MiB   	@profile
+   103                             	def getProjecao(self):	
+   104     39.2 MiB      0.0 MiB   		return self.entrada.GetProjection()
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   106     39.2 MiB      0.0 MiB   	@profile
+   107                             	def criaImagem(self,nome, linhas, colunas):
+   108     39.2 MiB      0.0 MiB   		saida = self.driver.Create(self.pastaSaida+nome+self.extensao,colunas, linhas,1,GDT_Float32)
+   109     39.2 MiB      0.0 MiB   		if saida is None:
+   110                             			print 'Erro ao criar o arquivo: ' + nome+self.extensao
+   111                             			sys.exit(1)
+   112     39.2 MiB      0.0 MiB   		saida.SetProjection(self.getProjecao())
+   113     39.2 MiB      0.0 MiB   		return saida, saida.GetRasterBand(1)
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   102     39.2 MiB      0.0 MiB   	@profile
+   103                             	def getProjecao(self):	
+   104     39.2 MiB      0.0 MiB   		return self.entrada.GetProjection()
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   106     39.2 MiB      0.0 MiB   	@profile
+   107                             	def criaImagem(self,nome, linhas, colunas):
+   108     39.2 MiB      0.0 MiB   		saida = self.driver.Create(self.pastaSaida+nome+self.extensao,colunas, linhas,1,GDT_Float32)
+   109     39.2 MiB      0.0 MiB   		if saida is None:
+   110                             			print 'Erro ao criar o arquivo: ' + nome+self.extensao
+   111                             			sys.exit(1)
+   112     39.2 MiB      0.0 MiB   		saida.SetProjection(self.getProjecao())
+   113     39.2 MiB      0.0 MiB   		return saida, saida.GetRasterBand(1)
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   102     39.2 MiB      0.0 MiB   	@profile
+   103                             	def getProjecao(self):	
+   104     39.2 MiB      0.0 MiB   		return self.entrada.GetProjection()
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   106     39.2 MiB      0.0 MiB   	@profile
+   107                             	def criaImagem(self,nome, linhas, colunas):
+   108     39.2 MiB      0.0 MiB   		saida = self.driver.Create(self.pastaSaida+nome+self.extensao,colunas, linhas,1,GDT_Float32)
+   109     39.2 MiB      0.0 MiB   		if saida is None:
+   110                             			print 'Erro ao criar o arquivo: ' + nome+self.extensao
+   111                             			sys.exit(1)
+   112     39.2 MiB      0.0 MiB   		saida.SetProjection(self.getProjecao())
+   113     39.2 MiB      0.0 MiB   		return saida, saida.GetRasterBand(1)
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   102     39.3 MiB      0.0 MiB   	@profile
+   103                             	def getProjecao(self):	
+   104     39.3 MiB      0.0 MiB   		return self.entrada.GetProjection()
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   106     39.2 MiB      0.0 MiB   	@profile
+   107                             	def criaImagem(self,nome, linhas, colunas):
+   108     39.3 MiB      0.1 MiB   		saida = self.driver.Create(self.pastaSaida+nome+self.extensao,colunas, linhas,1,GDT_Float32)
+   109     39.3 MiB      0.0 MiB   		if saida is None:
+   110                             			print 'Erro ao criar o arquivo: ' + nome+self.extensao
+   111                             			sys.exit(1)
+   112     39.3 MiB      0.0 MiB   		saida.SetProjection(self.getProjecao())
+   113     39.3 MiB      0.0 MiB   		return saida, saida.GetRasterBand(1)
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   102     39.3 MiB      0.0 MiB   	@profile
+   103                             	def getProjecao(self):	
+   104     39.3 MiB      0.0 MiB   		return self.entrada.GetProjection()
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   106     39.3 MiB      0.0 MiB   	@profile
+   107                             	def criaImagem(self,nome, linhas, colunas):
+   108     39.3 MiB      0.0 MiB   		saida = self.driver.Create(self.pastaSaida+nome+self.extensao,colunas, linhas,1,GDT_Float32)
+   109     39.3 MiB      0.0 MiB   		if saida is None:
+   110                             			print 'Erro ao criar o arquivo: ' + nome+self.extensao
+   111                             			sys.exit(1)
+   112     39.3 MiB      0.0 MiB   		saida.SetProjection(self.getProjecao())
+   113     39.3 MiB      0.0 MiB   		return saida, saida.GetRasterBand(1)
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   102     39.3 MiB      0.0 MiB   	@profile
+   103                             	def getProjecao(self):	
+   104     39.3 MiB      0.0 MiB   		return self.entrada.GetProjection()
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   106     39.3 MiB      0.0 MiB   	@profile
+   107                             	def criaImagem(self,nome, linhas, colunas):
+   108     39.3 MiB      0.0 MiB   		saida = self.driver.Create(self.pastaSaida+nome+self.extensao,colunas, linhas,1,GDT_Float32)
+   109     39.3 MiB      0.0 MiB   		if saida is None:
+   110                             			print 'Erro ao criar o arquivo: ' + nome+self.extensao
+   111                             			sys.exit(1)
+   112     39.3 MiB      0.0 MiB   		saida.SetProjection(self.getProjecao())
+   113     39.3 MiB      0.0 MiB   		return saida, saida.GetRasterBand(1)
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   102     39.3 MiB      0.0 MiB   	@profile
+   103                             	def getProjecao(self):	
+   104     39.3 MiB      0.0 MiB   		return self.entrada.GetProjection()
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   106     39.3 MiB      0.0 MiB   	@profile
+   107                             	def criaImagem(self,nome, linhas, colunas):
+   108     39.3 MiB      0.0 MiB   		saida = self.driver.Create(self.pastaSaida+nome+self.extensao,colunas, linhas,1,GDT_Float32)
+   109     39.3 MiB      0.0 MiB   		if saida is None:
+   110                             			print 'Erro ao criar o arquivo: ' + nome+self.extensao
+   111                             			sys.exit(1)
+   112     39.3 MiB      0.0 MiB   		saida.SetProjection(self.getProjecao())
+   113     39.3 MiB      0.0 MiB   		return saida, saida.GetRasterBand(1)
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   102     39.3 MiB      0.0 MiB   	@profile
+   103                             	def getProjecao(self):	
+   104     39.3 MiB      0.0 MiB   		return self.entrada.GetProjection()
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   106     39.3 MiB      0.0 MiB   	@profile
+   107                             	def criaImagem(self,nome, linhas, colunas):
+   108     39.3 MiB      0.0 MiB   		saida = self.driver.Create(self.pastaSaida+nome+self.extensao,colunas, linhas,1,GDT_Float32)
+   109     39.3 MiB      0.0 MiB   		if saida is None:
+   110                             			print 'Erro ao criar o arquivo: ' + nome+self.extensao
+   111                             			sys.exit(1)
+   112     39.3 MiB      0.0 MiB   		saida.SetProjection(self.getProjecao())
+   113     39.3 MiB      0.0 MiB   		return saida, saida.GetRasterBand(1)
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   102     39.3 MiB      0.0 MiB   	@profile
+   103                             	def getProjecao(self):	
+   104     39.3 MiB      0.0 MiB   		return self.entrada.GetProjection()
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   106     39.3 MiB      0.0 MiB   	@profile
+   107                             	def criaImagem(self,nome, linhas, colunas):
+   108     39.3 MiB      0.0 MiB   		saida = self.driver.Create(self.pastaSaida+nome+self.extensao,colunas, linhas,1,GDT_Float32)
+   109     39.3 MiB      0.0 MiB   		if saida is None:
+   110                             			print 'Erro ao criar o arquivo: ' + nome+self.extensao
+   111                             			sys.exit(1)
+   112     39.3 MiB      0.0 MiB   		saida.SetProjection(self.getProjecao())
+   113     39.3 MiB      0.0 MiB   		return saida, saida.GetRasterBand(1)
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    90     39.3 MiB      0.0 MiB   	@profile
+    91                             	def getColunas(self):
+    92     39.3 MiB      0.0 MiB   		return self.cols
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    86     39.3 MiB      0.0 MiB   	@profile
+    87                             	def getLinhas(self):
+    88     39.3 MiB      0.0 MiB   		return self.rows
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   249     39.3 MiB      0.0 MiB   	@profile
+   250                             	def setFullSize(self):
+   251     39.3 MiB      0.0 MiB   		self.xBlockSize = self.img.getColunas()
+   252     39.3 MiB      0.0 MiB   		self.yBlockSize = self.img.getLinhas()
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   161     39.3 MiB      0.0 MiB   	@profile
+   162                             	def setTa(self,ta):
+   163     39.3 MiB      0.0 MiB   		self.Ta = ta
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   165     39.3 MiB      0.0 MiB   	@profile
+   166                             	def setUR(self,ur):
+   167     39.3 MiB      0.0 MiB   		self.UR = ur
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   153     39.3 MiB      0.0 MiB   	@profile
+   154                             	def setZ(self,z):
+   155     39.3 MiB      0.0 MiB   		self.Z = z
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   157     39.3 MiB      0.0 MiB   	@profile
+   158                             	def setJulianDay(self,jd):
+   159     39.3 MiB      0.0 MiB   		self.julianDay = jd
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   265     39.3 MiB      0.0 MiB   	@profile
+   266                             	def setBandasSaida(self, saidaNDVI,bandaNDVI, saidaSAVI, bandaSAVI, saidaIAF, bandaIAF, saidaAlbedo, bandaAlbedoSuper,
+   267                             	saidaTemp, bandaTempSuper, saidaRad, bandaSaldoRad, saidaFluxo, bandaFluxo, saidaFracao, bandaFracao, saidaCalSen, bandaCalSen, saidaCalLat, bandaCalLat,
+   268                             	saidaEvap, bandaEvap):
+   269     39.3 MiB      0.0 MiB   		self.saidaNDVI = saidaNDVI
+   270     39.3 MiB      0.0 MiB   		self.bandaNDVI = bandaNDVI
+   271     39.3 MiB      0.0 MiB   		self.saidaSAVI = saidaSAVI
+   272     39.3 MiB      0.0 MiB   		self.bandaSAVI = bandaSAVI
+   273     39.3 MiB      0.0 MiB   		self.saidaIAF = saidaIAF
+   274     39.3 MiB      0.0 MiB   		self.bandaIAF = bandaIAF
+   275     39.3 MiB      0.0 MiB   		self.saidaAlbedo = saidaAlbedo
+   276     39.3 MiB      0.0 MiB   		self.bandaAlbedoSuper = bandaAlbedoSuper
+   277     39.3 MiB      0.0 MiB   		self.saidaTemp = saidaTemp
+   278     39.3 MiB      0.0 MiB   		self.bandaTempSuper = bandaTempSuper
+   279     39.3 MiB      0.0 MiB   		self.saidaRad = saidaRad
+   280     39.3 MiB      0.0 MiB   		self.bandaSaldoRad = bandaSaldoRad
+   281     39.3 MiB      0.0 MiB   		self.saidaFluxo = saidaFluxo
+   282     39.3 MiB      0.0 MiB   		self.bandaFluxo = bandaFluxo
+   283     39.3 MiB      0.0 MiB   		self.saidaFracao = saidaFracao
+   284     39.3 MiB      0.0 MiB   		self.bandaFracao = bandaFracao
+   285     39.3 MiB      0.0 MiB   		self.saidaCalSen = saidaCalSen
+   286     39.3 MiB      0.0 MiB   		self.bandaCalSen = bandaCalSen
+   287     39.3 MiB      0.0 MiB   		self.saidaCalLat = saidaCalLat
+   288     39.3 MiB      0.0 MiB   		self.bandaCalLat = bandaCalLat
+   289     39.3 MiB      0.0 MiB   		self.saidaEvap = saidaEvap
+   290     39.3 MiB      0.0 MiB   		self.bandaEvap = bandaEvap
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    98     39.3 MiB      0.0 MiB   	@profile
+    99                             	def getBandas(self):
+   100     39.3 MiB      0.0 MiB   		return self.NBandas
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   292     39.3 MiB      0.0 MiB   	@profile
+   293                             	def reflectanciaParte1(self,NBandas):
+   294     39.3 MiB      0.0 MiB   		self.p1 = numpy.zeros([NBandas+1],dtype=numpy.float32)
+   295     39.3 MiB      0.0 MiB   		for k in xrange(1,NBandas+1):
+   296     39.3 MiB      0.0 MiB   			if (k != 6) or self.img.nomeArquivoEntrada[-3:].lower() == 'hdf':
+   297     39.3 MiB      0.0 MiB   				self.p1[k] = self.valores.pi / (descBandas[k][5] * self.valores.cosZ * self.valores.dr)
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    98     39.3 MiB      0.0 MiB   	@profile
+    99                             	def getBandas(self):
+   100     39.3 MiB      0.0 MiB   		return self.NBandas
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    74     39.3 MiB      0.0 MiB   	@profile
+    75                             	def getEntrada(self):
+    76     39.3 MiB      0.0 MiB   		return self.entrada
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   299     39.3 MiB      0.0 MiB   	@profile
+   300                             	def reflectanciaParte2(self,NBandas,entrada, j, i, lerColunas, lerLinhas):
+   301     39.3 MiB      0.0 MiB   		dados = numpy.empty([NBandas+1],dtype=numpy.ndarray)
+   302     39.3 MiB      0.0 MiB   		self.albedoPlanetario = 0
+   303   1632.2 MiB   1592.9 MiB   		for k in xrange(1,NBandas+1):
+   304   1845.9 MiB    213.7 MiB   			dados[k] = entrada.GetRasterBand(k).ReadAsArray(j,i,lerColunas,lerLinhas).astype(numpy.float32)
+   305   2059.6 MiB    213.7 MiB   			radiancia = descBandas[k][3] + (descBandas[k][6] * dados[k])
+   306   2059.6 MiB      0.0 MiB   			if (k == 2):
+   307   1204.8 MiB   -854.7 MiB   				self.mask = dados[k-1] == dados[k]
+   308    991.2 MiB   -213.7 MiB   				dados[k-1] = None
+   309   2059.6 MiB   1068.4 MiB   			elif(k > 2):
+   310   2059.6 MiB      0.0 MiB   				self.mask = valueOff == dados[k]
+   311                             
+   312   2059.6 MiB      0.0 MiB   			if(k != NBandas and k >= 2):
+   313   1845.9 MiB   -213.7 MiB   				valueOff = numpy.choose(self.mask,(numpy.nan, dados[k]))
+   314                             
+   315   2059.6 MiB    213.7 MiB   			if(k >= 2):
+   316   1845.9 MiB   -213.7 MiB   				dados[k] = None
+   317                             
+   318   1845.9 MiB      0.0 MiB   			if(k != 6) or self.img.nomeArquivoEntrada[-3:].lower()== 'hdf':
+   319   2059.6 MiB    213.7 MiB   				reflectancia = self.p1[k] * radiancia
+   320                             
+   321   2059.6 MiB      0.0 MiB   				self.albedoPlanetario += descBandas[k][7] * reflectancia
+   322                             
+   323   1845.9 MiB   -213.7 MiB   				radiancia = None
+   324                             
+   325   1845.9 MiB      0.0 MiB   				if(k == 3):
+   326   1204.8 MiB   -641.1 MiB   					self.reflectanciaB3 = reflectancia
+   327   1845.9 MiB    641.1 MiB   				elif(k == 4):
+   328   1418.5 MiB   -427.4 MiB   					self.reflectanciaB4 = reflectancia
+   329   1845.9 MiB    427.4 MiB   				elif(k == 1):
+   330    724.0 MiB  -1121.8 MiB   					self.reflectanciaB1 = reflectancia
+   331   1845.9 MiB   1121.8 MiB   				elif (k==2):
+   332    991.2 MiB   -854.7 MiB   					self.reflectanciaB2 = reflectancia
+   333   1632.2 MiB    641.1 MiB   				reflectancia = None
+   334                             			else:
+   335   1632.2 MiB      0.0 MiB   				self.radianciaB6 = radiancia
+   336   1632.2 MiB      0.0 MiB   				radiancia = None
+   337                             			
+   338   1632.2 MiB      0.0 MiB   		self.mask = numpy.choose(self.mask,(True,False))
+   339   1418.5 MiB   -213.7 MiB   		valueOff = None
+   340   1418.5 MiB      0.0 MiB   		dados = None
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   361   1418.5 MiB      0.0 MiB   	@profile
+   362                             	def setNdvitif(self):
+   363   1632.2 MiB    213.7 MiB   		self.ndvi = numpy.choose(self.mask, (self.valores.noValue, (self.reflectanciaB4 - self.reflectanciaB3) / (self.reflectanciaB4 + self.reflectanciaB3)))
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   369   1632.2 MiB      0.0 MiB   	@profile	
+   370                             	def setSavi(self):
+   371   1845.9 MiB    213.7 MiB   		self.savi = numpy.choose(self.mask, (self.valores.noValue, ((1 + self.valores.L) * (self.reflectanciaB4 - self.reflectanciaB3)) / (self.valores.L + (self.reflectanciaB4 + self.reflectanciaB3))))
+   372   1632.2 MiB   -213.7 MiB   		self.reflectanciaB4 = None
+   373   1418.5 MiB   -213.7 MiB   		self.reflectanciaB3 = None
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   379   1418.5 MiB      0.0 MiB   	@profile
+   380                             	def setIaf(self):
+   381   1418.5 MiB      0.0 MiB   		numpy.seterr(all='ignore')
+   382   1471.9 MiB     53.4 MiB   		self.mask1 = numpy.logical_and(((0.69 - self.savi) / 0.59) > 0, self.mask)
+   383   1685.6 MiB    213.7 MiB   		self.iaf = numpy.choose(self.mask1, (self.valores.noValue, -1 * (numpy.log((0.69 - self.savi) / 0.59) / 0.91)))
+   384   1685.6 MiB      0.0 MiB   		self.mask1 = self.savi <= 0.1
+   385   1685.6 MiB      0.0 MiB   		self.iaf = numpy.choose(self.mask1,(self.iaf, 0.0))
+   386   1685.6 MiB      0.0 MiB   		self.mask1 = self.savi >= 0.687
+   387   1685.6 MiB      0.0 MiB   		self.iaf = numpy.choose(self.mask1,(self.iaf, 6.0))
+   388   1685.6 MiB      0.0 MiB   		numpy.seterr(all='warn')
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   394   1685.6 MiB      0.0 MiB   	@profile
+   395                             	def albedoSuper(self):
+   396   1899.3 MiB    213.7 MiB   		self.albedoSuperficie = numpy.choose(self.mask, (self.valores.noValue, (self.albedoPlanetario - self.valores.ap) * self.valores.p2))
+   397   1899.3 MiB      0.0 MiB   		if numpy.amax(self.albedoSuperficie) > self.albedoSupMax:
+   398   1899.3 MiB      0.0 MiB   			self.albedoSupMax = numpy.amax(self.albedoSuperficie)
+   399   1685.6 MiB   -213.7 MiB   		self.albedoPlanetario = None
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   405   1685.6 MiB      0.0 MiB   	@profile	
+   406                             	def enb_e_e0(self):
+   407   1899.3 MiB    213.7 MiB   		self.ENB = 0.97 + 0.0033 * self.iaf
+   408   2113.0 MiB    213.7 MiB   		self.E0 = 0.95 + 0.01 * self.iaf
+   409   2113.0 MiB      0.0 MiB   		self.mask1 = self.iaf >= 3
+   410   2113.0 MiB      0.0 MiB   		self.ENB = numpy.choose(self.mask1, (self.ENB, 0.98))
+   411   2113.0 MiB      0.0 MiB   		self.E0 = numpy.choose(self.mask1, (self.E0, 0.98))
+   412   2113.0 MiB      0.0 MiB   		self.mask1 = self.ndvi <= 0
+   413   2113.0 MiB      0.0 MiB   		self.ENB = numpy.choose(self.mask1, (self.ENB, 0.99))
+   414   2113.0 MiB      0.0 MiB   		self.E0 = numpy.choose(self.mask1, (self.E0, 0.985))
+   415   2059.6 MiB    -53.4 MiB   		self.mask1 = None
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   417   2059.6 MiB      0.0 MiB   	@profile	
+   418                             	def tempSupertif(self, i, j,lerLinhas, lerColunas):
+   419   2273.3 MiB    213.7 MiB   		self.temperaturaSuperficie = numpy.choose(self.mask, (self.valores.noValue, self.valores.K2 / numpy.log(((self.ENB * self.valores.K1) / self.radianciaB6) + 1.0)))
+   420   2059.6 MiB   -213.7 MiB   		self.radianciaB6 = None
+   421   1845.9 MiB   -213.7 MiB   		self.ENB = None
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   445   2059.6 MiB      0.0 MiB   	@profile
+   446                             	def radOndaLongaEmi(self):
+   447   2273.3 MiB    213.7 MiB   		return numpy.power(self.temperaturaSuperficie,4)*(self.E0 * self.valores.constSB)
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   450   1845.9 MiB      0.0 MiB   	@profile
+   451                             	def setSaldoRadiacao(self):
+   452   2059.6 MiB    213.7 MiB   		self.saldoRadiacao = numpy.choose(self.mask, (self.valores.noValue, (self.E0 * self.valores.radOndaLongaInci - self.radOndaLongaEmi()) + ((1.0 - self.albedoSuperficie) * self.valores.radOndaCurtaInci)))
+   453                             		
+   454   1845.9 MiB   -213.7 MiB   		self.E0 = None  
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   460   1845.9 MiB      0.0 MiB   	@profile
+   461                             	def setFluxoCalSolo(self):
+   462   1899.3 MiB     53.4 MiB   		self.mask1 = self.ndvi < 0
+   463   1899.3 MiB      0.0 MiB   		self.fluxoCalSolo = numpy.choose(self.mask1, (((self.temperaturaSuperficie - 273.15) * (0.0038 + (0.0074 * self.albedoSuperficie))\
+   464   2113.0 MiB    213.7 MiB   							   * (1.0 - (0.98 * numpy.power(self.ndvi,4)))) * self.saldoRadiacao, self.valores.G * self.saldoRadiacao))
+   465   2059.6 MiB    -53.4 MiB   		self.mask1 = None
+   466   2059.6 MiB      0.0 MiB   		self.fluxoCalSolo = numpy.choose(self.mask, (self.valores.noValue, self.fluxoCalSolo))
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   401   2059.6 MiB      0.0 MiB   	@profile	
+   402                             	def getAlbedoSuper(self):
+   403   2059.6 MiB      0.0 MiB   		return self.albedoSuperficie
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   441   2059.6 MiB      0.0 MiB   	@profile
+   442                             	def getTemperaturaSuperficie(self):
+   443   2059.6 MiB      0.0 MiB   		return self.temperaturaSuperficie
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   503   2059.6 MiB      0.0 MiB   	@profile
+   504                             	def fracaoEvaporativaSSEBI(self, i, j, lerLinhas, lerColunas):
+   505   2059.6 MiB      0.0 MiB   		limSupEsq = numpy.zeros([self.valores.qtdPontos],dtype=numpy.float32)
+   506   2059.6 MiB      0.0 MiB   		limInfEsq = numpy.zeros([self.valores.qtdPontos],dtype=numpy.float32)
+   507   2059.6 MiB      0.0 MiB   		limEsqPVez = True
+   508   2059.6 MiB      0.0 MiB   		limSupDir = numpy.zeros([self.valores.qtdPontos],dtype=numpy.float32)
+   509   2059.6 MiB      0.0 MiB   		limInfDir = numpy.zeros([self.valores.qtdPontos],dtype=numpy.float32)
+   510   2059.6 MiB      0.0 MiB   		limDirPVez = True
+   511   2059.6 MiB      0.0 MiB   		albedoSuperficie = self.getAlbedoSuper()
+   512   2059.6 MiB      0.0 MiB   		temperaturaSuperficie = self.getTemperaturaSuperficie()
+   513   2113.0 MiB     53.4 MiB   		maskAlbedoSuper = numpy.logical_and(albedoSuperficie <= (self.albedoSupMax * 0.2), albedoSuperficie != self.valores.noValue)
+   514   2250.2 MiB    137.2 MiB   		limiteLadoEsq = temperaturaSuperficie[maskAlbedoSuper]
+   515   2250.2 MiB      0.0 MiB   		maskAlbedoSuper = albedoSuperficie >= (self.albedoSupMax * 0.8)
+   516   2250.2 MiB      0.0 MiB   		limiteLadoDir = temperaturaSuperficie[maskAlbedoSuper]
+   517   2196.8 MiB    -53.4 MiB   		maskAlbedoSuper = None
+   518   2196.8 MiB      0.0 MiB   		albedoSuperficie = None
+   519   2196.8 MiB      0.0 MiB   		temperaturaSuperficieSaida = None
+   520                             		
+   521   2231.0 MiB     34.3 MiB   		self.mask1 = limiteLadoEsq != self.valores.noValue
+   522   2231.0 MiB      0.0 MiB   		limiteLadoEsq = limiteLadoEsq[self.mask1]
+   523   2196.8 MiB    -34.3 MiB   		self.mask1 = limiteLadoDir != self.valores.noValue
+   524   2196.9 MiB      0.2 MiB   		limiteLadoDir = limiteLadoDir[self.mask1]
+   525   2196.9 MiB      0.0 MiB   		self.mask1 = None
+   526   2196.9 MiB      0.0 MiB   		if (limiteLadoEsq.size > 0):
+   527   2196.9 MiB      0.0 MiB   			if (limEsqPVez):
+   528   2196.9 MiB      0.0 MiB   				limiteLadoEsq = numpy.sort(limiteLadoEsq)
+   529   2196.9 MiB      0.0 MiB   				limSupEsq = limiteLadoEsq[::-1][0:self.valores.qtdPontos]
+   530   2196.9 MiB      0.0 MiB   				limInfEsq = limiteLadoEsq[0:self.valores.qtdPontos]
+   531   2196.9 MiB      0.0 MiB   				limEsqPVez = False
+   532                             			else:
+   533                             				limSupEsq = numpy.sort(numpy.concatenate((limSupEsq,limiteLadoEsq)))[::-1][0:self.valores.qtdPontos]
+   534                             				limInfEsq = numpy.sort(numpy.concatenate((limInfEsq,limiteLadoEsq)))[0:self.valores.qtdPontos]
+   535   2196.9 MiB      0.0 MiB   		if (limiteLadoDir.size > 0):
+   536   2196.9 MiB      0.0 MiB   			if (limDirPVez):
+   537   2196.9 MiB      0.0 MiB   				limiteLadoDir = numpy.sort(limiteLadoDir)
+   538   2196.9 MiB      0.0 MiB   				limSupDir = limiteLadoDir[::-1][0:self.valores.qtdPontos]
+   539   2196.9 MiB      0.0 MiB   				limInfDir = limiteLadoDir[0:self.valores.qtdPontos]
+   540   2196.9 MiB      0.0 MiB   				limDirPVez = False
+   541                             			else:
+   542                             				limSupDir = numpy.sort(numpy.concatenate((limSupDir,limiteLadoDir)))[::-1][0:self.valores.qtdPontos]
+   543                             				limInfDir = numpy.sort(numpy.concatenate((limInfDir,limiteLadoDir)))[0:self.valores.qtdPontos]
+   544   2196.9 MiB      0.0 MiB   		limiteLadoEsq = None
+   545   2196.9 MiB      0.0 MiB   		limiteLadoDir = None	
+   546                             		
+   547   2196.9 MiB      0.0 MiB   		self.limSupEsq = numpy.average(limSupEsq)
+   548   2196.9 MiB      0.0 MiB   		self.limInfEsq = numpy.average(limInfEsq)
+   549   2196.9 MiB      0.0 MiB   		self.limSupDir = numpy.average(limSupDir)
+   550   2196.9 MiB      0.0 MiB   		self.limInfDir = numpy.average(limInfDir)
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   401   2059.8 MiB      0.0 MiB   	@profile	
+   402                             	def getAlbedoSuper(self):
+   403   2059.8 MiB      0.0 MiB   		return self.albedoSuperficie
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   441   2273.4 MiB      0.0 MiB   	@profile
+   442                             	def getTemperaturaSuperficie(self):
+   443   2273.4 MiB      0.0 MiB   		return self.temperaturaSuperficie
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   401   2273.4 MiB      0.0 MiB   	@profile	
+   402                             	def getAlbedoSuper(self):
+   403   2273.4 MiB      0.0 MiB   		return self.albedoSuperficie
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   552   2059.8 MiB      0.0 MiB   	@profile
+   553                             	def fracao(self):	
+   554   2059.8 MiB      0.0 MiB   		x1 = 0.1
+   555   2059.8 MiB      0.0 MiB   		x2 = self.albedoSupMax
+   556   2059.8 MiB      0.0 MiB   		x2x1 = x2 - x1
+   557   2059.8 MiB      0.0 MiB   		m1 = (self.limSupDir - self.limSupEsq) / x2x1
+   558   2059.8 MiB      0.0 MiB   		m2 = (self.limInfDir - self.limInfEsq) / x2x1
+   559   2059.8 MiB      0.0 MiB   		c1 = ((x2 * self.limSupEsq) - (x1 * self.limSupDir)) / x2x1
+   560   2059.8 MiB      0.0 MiB   		c2 = ((x2 * self.limInfEsq) - (x1 * self.limInfDir)) / x2x1
+   561                             		
+   562   2273.4 MiB    213.7 MiB   		self.fracaoEvaporativa = numpy.choose(self.mask, (self.valores.noValue, (c1 + (m1 * self.getAlbedoSuper()) - self.getTemperaturaSuperficie())/((c1 - c2) + ((m1 - m2) * self.getAlbedoSuper()))))
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   343   1418.5 MiB      0.0 MiB   	@profile
+   344                             	def fazCalculos(self, fracao, fracao2,i, j, lerLinhas, lerColunas):	
+   345                             
+   346   1632.2 MiB    213.7 MiB   		exec('self.setNdvi'+self.img.nomeArquivoEntrada[-3:].lower()+'()')
+   347   1418.5 MiB   -213.7 MiB   		self.setSavi()
+   348   1685.6 MiB    267.1 MiB   		self.setIaf()
+   349   1685.6 MiB      0.0 MiB   		self.albedoSuper()
+   350   2059.6 MiB    373.9 MiB   		self.enb_e_e0()
+   351   1845.9 MiB   -213.7 MiB   		exec('self.tempSuper'+self.img.nomeArquivoEntrada[-3:].lower()+'('+str(i)+','+str(j)+','+str(lerLinhas)+','+str(lerColunas)+')')
+   352   1845.9 MiB      0.0 MiB   		self.setSaldoRadiacao()
+   353   2059.6 MiB    213.7 MiB   		self.setFluxoCalSolo()
+   354   2059.8 MiB      0.2 MiB   		exec(fracao+'('+str(i)+','+str(j)+','+str(lerLinhas)+','+str(lerColunas)+')')
+   355   2273.4 MiB    213.7 MiB   		exec(fracao2)
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   365   2273.4 MiB      0.0 MiB   	@profile
+   366                             	def getNDVI(self):
+   367   2273.4 MiB      0.0 MiB   		return self.ndvi
+
+
+ndvi - Pronto!
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   115   2273.4 MiB      0.0 MiB   	@profile
+   116                             	def saidaImagem(self,nome, banda, saida, calculo,i, j):
+   117   2273.5 MiB      0.0 MiB   		banda.WriteArray(calculo, j , i)
+   118   2273.5 MiB      0.0 MiB   		banda.SetNoDataValue(Valores.noValue)
+   119   2273.5 MiB      0.0 MiB   		print nome + ' - Pronto!'
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   375   2273.5 MiB      0.0 MiB   	@profile
+   376                             	def getSAVI(self):
+   377   2273.5 MiB      0.0 MiB   		return self.savi
+
+
+savi - Pronto!
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   115   2273.5 MiB      0.0 MiB   	@profile
+   116                             	def saidaImagem(self,nome, banda, saida, calculo,i, j):
+   117   2273.6 MiB      0.2 MiB   		banda.WriteArray(calculo, j , i)
+   118   2273.6 MiB      0.0 MiB   		banda.SetNoDataValue(Valores.noValue)
+   119   2273.6 MiB      0.0 MiB   		print nome + ' - Pronto!'
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   390   2273.6 MiB      0.0 MiB   	@profile	
+   391                             	def getIAF(self):
+   392   2273.6 MiB      0.0 MiB   		return self.iaf
+
+
+iaf - Pronto!
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   115   2273.6 MiB      0.0 MiB   	@profile
+   116                             	def saidaImagem(self,nome, banda, saida, calculo,i, j):
+   117   2273.8 MiB      0.2 MiB   		banda.WriteArray(calculo, j , i)
+   118   2273.8 MiB      0.0 MiB   		banda.SetNoDataValue(Valores.noValue)
+   119   2273.8 MiB      0.0 MiB   		print nome + ' - Pronto!'
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   401   2273.8 MiB      0.0 MiB   	@profile	
+   402                             	def getAlbedoSuper(self):
+   403   2273.8 MiB      0.0 MiB   		return self.albedoSuperficie
+
+
+albedoSuperficie - Pronto!
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   115   2273.8 MiB      0.0 MiB   	@profile
+   116                             	def saidaImagem(self,nome, banda, saida, calculo,i, j):
+   117   2274.0 MiB      0.2 MiB   		banda.WriteArray(calculo, j , i)
+   118   2274.0 MiB      0.0 MiB   		banda.SetNoDataValue(Valores.noValue)
+   119   2274.0 MiB      0.0 MiB   		print nome + ' - Pronto!'
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   441   2274.0 MiB      0.0 MiB   	@profile
+   442                             	def getTemperaturaSuperficie(self):
+   443   2274.0 MiB      0.0 MiB   		return self.temperaturaSuperficie
+
+
+temperaturaSuperficie - Pronto!
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   115   2274.0 MiB      0.0 MiB   	@profile
+   116                             	def saidaImagem(self,nome, banda, saida, calculo,i, j):
+   117   2274.2 MiB      0.2 MiB   		banda.WriteArray(calculo, j , i)
+   118   2274.2 MiB      0.0 MiB   		banda.SetNoDataValue(Valores.noValue)
+   119   2274.2 MiB      0.0 MiB   		print nome + ' - Pronto!'
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   456   2274.2 MiB      0.0 MiB   	@profile
+   457                               	def getSaldoRadiacao(self):
+   458   2274.2 MiB      0.0 MiB   		return self.saldoRadiacao       
+
+
+saldoRadiacao - Pronto!
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   115   2274.2 MiB      0.0 MiB   	@profile
+   116                             	def saidaImagem(self,nome, banda, saida, calculo,i, j):
+   117   2274.4 MiB      0.2 MiB   		banda.WriteArray(calculo, j , i)
+   118   2274.4 MiB      0.0 MiB   		banda.SetNoDataValue(Valores.noValue)
+   119   2274.4 MiB      0.0 MiB   		print nome + ' - Pronto!'
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   468   2274.4 MiB      0.0 MiB   	@profile
+   469                             	def getFluxoCalSolo(self):
+   470   2274.4 MiB      0.0 MiB   		return self.fluxoCalSolo
+
+
+fluxoCalSolo - Pronto!
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   115   2274.4 MiB      0.0 MiB   	@profile
+   116                             	def saidaImagem(self,nome, banda, saida, calculo,i, j):
+   117   2274.6 MiB      0.2 MiB   		banda.WriteArray(calculo, j , i)
+   118   2274.6 MiB      0.0 MiB   		banda.SetNoDataValue(Valores.noValue)
+   119   2274.6 MiB      0.0 MiB   		print nome + ' - Pronto!'
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   472   2274.6 MiB      0.0 MiB   	@profile
+   473                             	def getFracaoEvaporativa(self):
+   474   2274.6 MiB      0.0 MiB   		return self.fracaoEvaporativa
+
+
+fracaoEvaporativa - Pronto!
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   115   2274.6 MiB      0.0 MiB   	@profile
+   116                             	def saidaImagem(self,nome, banda, saida, calculo,i, j):
+   117   2274.8 MiB      0.2 MiB   		banda.WriteArray(calculo, j , i)
+   118   2274.8 MiB      0.0 MiB   		banda.SetNoDataValue(Valores.noValue)
+   119   2274.8 MiB      0.0 MiB   		print nome + ' - Pronto!'
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   476   2274.8 MiB      0.0 MiB   	@profile
+   477                             	def getFluxoCalorSensivel(self):
+   478   2488.5 MiB    213.7 MiB   		return numpy.choose(self.mask, (self.valores.noValue, (1 - self.fracaoEvaporativa) * (self.saldoRadiacao - self.fluxoCalSolo)))
+
+
+fluxoCalorSensivel - Pronto!
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   115   2488.5 MiB      0.0 MiB   	@profile
+   116                             	def saidaImagem(self,nome, banda, saida, calculo,i, j):
+   117   2488.7 MiB      0.2 MiB   		banda.WriteArray(calculo, j , i)
+   118   2488.7 MiB      0.0 MiB   		banda.SetNoDataValue(Valores.noValue)
+   119   2488.7 MiB      0.0 MiB   		print nome + ' - Pronto!'
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   480   2275.0 MiB      0.0 MiB   	@profile
+   481                             	def getFluxoCalorLatente(self):
+   482   2488.6 MiB    213.6 MiB   		return numpy.choose(self.mask, (self.valores.noValue, self.fracaoEvaporativa * (self.saldoRadiacao - self.fluxoCalSolo)))
+
+
+fluxoCalorLatente - Pronto!
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   115   2488.6 MiB      0.0 MiB   	@profile
+   116                             	def saidaImagem(self,nome, banda, saida, calculo,i, j):
+   117   2488.8 MiB      0.2 MiB   		banda.WriteArray(calculo, j , i)
+   118   2488.8 MiB      0.0 MiB   		banda.SetNoDataValue(Valores.noValue)
+   119   2488.8 MiB      0.0 MiB   		print nome + ' - Pronto!'
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   484   2275.1 MiB      0.0 MiB   	@profile
+   485                             	def getEvapotranspiracao24h(self):
+   486   2275.1 MiB      0.0 MiB   		return numpy.choose(self.mask, (self.valores.noValue, (self.fracaoEvaporativa * (self.valores.Rg24h * (1.0 - self.albedoSuperficie)\
+   487   2488.8 MiB    213.7 MiB                                                       - 110.0 * self.valores.Tao24h) * 86.4) / 2450.0))
+
+
+evapotranspiração24h - Pronto!
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   115   2488.8 MiB      0.0 MiB   	@profile
+   116                             	def saidaImagem(self,nome, banda, saida, calculo,i, j):
+   117   2489.0 MiB      0.2 MiB   		banda.WriteArray(calculo, j , i)
+   118   2489.0 MiB      0.0 MiB   		banda.SetNoDataValue(Valores.noValue)
+   119   2489.0 MiB      0.0 MiB   		print nome + ' - Pronto!'
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   489   2275.3 MiB      0.0 MiB   	@profile
+   490                             	def passoFinal(self):
+   491   2061.6 MiB   -213.7 MiB   		self.temperaturaSuperficie = None
+   492   2008.2 MiB    -53.4 MiB   		self.mask = None
+   493   2008.2 MiB      0.0 MiB   		self.evapotranspiracao24h = None
+   494   2008.2 MiB      0.0 MiB   		self.fluxoCalorLatente = None
+   495   1794.5 MiB   -213.7 MiB   		self.fracaoEvaporativa = None
+   496   1580.9 MiB   -213.7 MiB   		self.fluxoCalSolo = None
+   497   1367.2 MiB   -213.7 MiB   		self.saldoRadiacao = None
+   498   1153.5 MiB   -213.7 MiB   		self.albedoSuperficie = None
+   499    939.8 MiB   -213.7 MiB   		self.ndvi = None
+   500    726.1 MiB   -213.7 MiB   		self.savi = None
+   501    512.4 MiB   -213.7 MiB   		self.iaf = None
+
+
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   190     39.3 MiB      0.0 MiB   	@profile
+   191                             	def EscreveTudo(self,Ta, UR, Z, julianDay):
+   192     39.3 MiB      0.0 MiB   		formulas = Formulas( Ta, UR, Z, julianDay, self.img)
+   193     39.3 MiB      0.0 MiB   		formulas.setBandasSaida(self.saidaNDVI,self.bandaNDVI, self.saidaSAVI, self.bandaSAVI, self.saidaIAF,self.bandaIAF, self.saidaAlbedo, 
+   194     39.3 MiB      0.0 MiB   		self.bandaAlbedoSuper,self.saidaTemp, self.bandaTempSuper,self.saidaRad, self.bandaSaldoRad, self.saidaFluxo, self.bandaFluxo, self.saidaFracao, self.bandaFracao,
+   195     39.3 MiB      0.0 MiB   		self.saidaCalSen, self.bandaCalSen, self.saidaCalLat, self.bandaCalLat,self.saidaEvap, self.bandaEvap)
+   196                             
+   197    512.4 MiB    473.1 MiB   		for i in xrange(0,self.linhas,self.yBlockSize):
+   198     39.3 MiB   -473.1 MiB   			if i + self.yBlockSize < self.linhas:
+   199                             				lerLinhas = self.yBlockSize
+   200                             			else:
+   201     39.3 MiB      0.0 MiB   				lerLinhas = self.linhas - i
+   202                             
+   203    512.4 MiB    473.1 MiB   			for j in xrange(0,self.colunas,self.xBlockSize):
+   204     39.3 MiB   -473.1 MiB   				if j + self.xBlockSize < self.colunas:
+   205                             					lerColunas = self.xBlockSize
+   206                             				else:
+   207     39.3 MiB      0.0 MiB   					lerColunas = self.colunas - j
+   208                             				
+   209     39.3 MiB      0.0 MiB   				formulas.reflectanciaParte1(self.img.getBandas())
+   210   1418.5 MiB   1379.2 MiB   				formulas.reflectanciaParte2(self.img.getBandas(),self.img.getEntrada(), j, i, lerColunas, lerLinhas)
+   211   2273.4 MiB    854.9 MiB   				formulas.fazCalculos(self.fracao, self.fracao2, i, j, lerLinhas, lerColunas)
+   212   2273.5 MiB      0.0 MiB   				self.img.saidaImagem('ndvi', self.bandaNDVI, self.saidaNDVI,formulas.getNDVI(), i, j)
+   213   2273.6 MiB      0.2 MiB   				self.img.saidaImagem('savi', self.bandaSAVI, self.saidaSAVI,formulas.getSAVI(), i, j)
+   214   2273.8 MiB      0.2 MiB   				self.img.saidaImagem('iaf', self.bandaIAF, self.saidaIAF, formulas.getIAF(), i, j)
+   215   2274.0 MiB      0.2 MiB   				self.img.saidaImagem('albedoSuperficie', self.bandaAlbedoSuper, self.saidaAlbedo, formulas.getAlbedoSuper(), i, j)
+   216                             				
+   217   2274.2 MiB      0.2 MiB   				self.img.saidaImagem('temperaturaSuperficie',self.bandaTempSuper,self.saidaTemp, formulas.getTemperaturaSuperficie(), i, j)
+   218   2274.4 MiB      0.2 MiB   				self.img.saidaImagem('saldoRadiacao', self.bandaSaldoRad, self.saidaRad, formulas.getSaldoRadiacao(), i, j)
+   219   2274.6 MiB      0.2 MiB   				self.img.saidaImagem('fluxoCalSolo', self.bandaFluxo, self.saidaFluxo, formulas.getFluxoCalSolo(), i, j)
+   220                             				
+   221   2274.8 MiB      0.2 MiB   				self.img.saidaImagem('fracaoEvaporativa', self.bandaFracao, self.saidaFracao, formulas.getFracaoEvaporativa(), i, j)
+   222                             
+   223   2275.0 MiB      0.2 MiB   				self.img.saidaImagem('fluxoCalorSensivel', self.bandaCalSen, self.saidaCalSen, formulas.getFluxoCalorSensivel(), i,j )
+   224   2275.1 MiB      0.1 MiB   				self.img.saidaImagem('fluxoCalorLatente', self.bandaCalLat, self.saidaCalLat, formulas.getFluxoCalorLatente(), i,j)
+   225   2275.3 MiB      0.2 MiB   				self.img.saidaImagem('evapotranspiração24h',self.bandaEvap,self.saidaEvap, formulas.getEvapotranspiracao24h(), i,j)
+   226    512.4 MiB  -1762.9 MiB   				formulas.passoFinal()
+   227                             					
+   228    512.4 MiB      0.0 MiB   		self.saidaNDVI = self.bandaNDVI = None
+   229    512.4 MiB      0.0 MiB   		self.saidaSAVI = self.bandaSAVI = None
+   230    512.4 MiB      0.0 MiB   		self.saidaIAF = self.bandaIAF = None
+   231    512.4 MiB      0.0 MiB   		self.saidaAlbedo = self.bandaAlbedoSuper = None
+   232    512.4 MiB      0.0 MiB   		self.saidaTemp = self.bandaTempSuper = None
+   233    512.4 MiB      0.0 MiB   		self.saidaRad = self.bandaSaldoRad = None
+   234    512.4 MiB      0.0 MiB   		self.saidaFluxo = self.bandaFluxo = None
+   235    512.4 MiB      0.0 MiB   		self.saidaFracao = self.bandaFracao = None
+   236    512.4 MiB      0.0 MiB   		self.saidaCalSen = self.bandaCalSen = None
+   237    512.4 MiB      0.0 MiB   		self.saidaCalLat = self.bandaCalLat = None
+   238    512.4 MiB      0.0 MiB   		self.saidaEvap = self.bandaEvap = None
+   239    512.4 MiB      0.0 MiB   		if os.path.exists(self.img.pastaSaida+self.img.nomeArquivoEntrada):
+   240                             			os.remove(self.img.pastaSaida+self.img.nomeArquivoEntrada)
+   241    512.4 MiB      0.0 MiB   		img = None
+   242     83.1 MiB   -429.3 MiB   		formulas = None
+
+
+Tempo total: 107.611918926 segundos.
+Filename: S-SEBI_Orientado-memory_profiler.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   648     38.4 MiB      0.0 MiB   @profile
+   649                             def main():
+   650     38.4 MiB      0.0 MiB   	inicio = time.time()
+   651                             	#Instancia-se o algoritmo desejado e passa parâmetros
+   652     38.4 MiB      0.0 MiB   	numpy.seterr(all='ignore')
+   653                             	
+   654     38.4 MiB      0.0 MiB   	Ta = 32.7
+   655     38.4 MiB      0.0 MiB   	UR = 36.46
+   656     38.4 MiB      0.0 MiB   	Z = 50.24
+   657     38.4 MiB      0.0 MiB   	julianDay = 248.0
+   658     38.4 MiB      0.0 MiB   	nome = 'empilhada.tif'
+   659                             	#nome = 'empilhada1000x1000.tif'
+   660     42.8 MiB      4.3 MiB   	a = SSEBI(nome, Ta, UR, Z, julianDay)
+   661     42.8 MiB      0.0 MiB   	fim = time.time()
+   662     42.8 MiB      0.0 MiB   	print 'Tempo total: '+str(fim - inicio)+' segundos.'
+   663                             	'''
+   664                             	inicio = time.time()
+   665                             	a = SSEBI_Block(nome, Ta, UR, Z, julianDay)
+   666                             	fim = time.time()
+   667                             	print 'Tempo total: '+str(fim - inicio)+' segundos.'
+   668                             	
+   669                             	inicio = time.time()
+   670                             	a = SSEB(nome, Ta, UR, Z, julianDay)
+   671                             	fim = time.time()
+   672                             	
+   673                             	numpy.seterr(all='warn')
+   674     42.8 MiB      0.0 MiB   	print 'Tempo total: '+str(fim - inicio)+' segundos.'''
+
